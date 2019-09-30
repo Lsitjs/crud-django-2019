@@ -12,12 +12,19 @@
  <a href="new/">+ Adicionar Usuario</a>
 
 <ul>
-
+<tr>
 {% for usuario in usuarios %}
-    <li>    {{ usuario.nome }} </li>
+    <table border="0"  width="20%">
+    <td>
+    <a href="update/{{usuario.id}}">
+    <li>    {{ usuario.nome }} </li></a>
+    </td>
+    <td>
+    <a href="delete/{{usuario.id}}"> deletar esse usuario</a>
+    </td>
 
 {% endfor %}
-
+</tr>
 </ul>
 </body>
 </html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from.models import Usuario
 from.forms import UsuarioForm
 
@@ -15,3 +15,22 @@ def criar_usuario(request):
         return redirect('lista_usuario')
 
     return render(request, 'usuarios-form.html', {'form': form})
+
+def atualiza_usuario(request, id):
+    usuario = get_object_or_404(Usuario, pk=id)
+    form = UsuarioForm(request.POST or None, instance=usuario)
+
+    if form.is_valid():
+        form.save()
+        return redirect('lista_usuario')
+
+    return render(request, 'usuarios-form.html', {'form': form})
+
+def deletar_usuario(request, id):
+    usuario = get_object_or_404(Usuario, pk=id)
+
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('lista_usuario')
+
+    return render(request, 'confirm_delete.html', {'usuario': usuario})
