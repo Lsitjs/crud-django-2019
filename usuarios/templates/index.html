@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Gestão de Usuarios</h1>
+
+<h2>Lista de usuarios</h2>
+
+ <a href="new/">+ Adicionar Usuario</a>
+
+<ul>
+
+{% for usuario in usuarios %}
+    <li>    {{ usuario.nome }} </li>
+
+{% endfor %}
+
+</ul>
+</body>
+</html>
