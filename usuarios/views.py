@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from.models import Usuario
 from.forms import UsuarioForm
+from rest_framework import viewsets
+from .serializers import UsuarioSerializer
 
 # Create your views here.
+
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+
 def lista_usuario(request):
     usuarios = Usuario.objects.all()
     return render(request,'index.html', {'usuarios': usuarios})
